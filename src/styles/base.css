@@ -1,0 +1,249 @@
+/* ==========================================================================
+   SECOND LIFE — BASE STYLES (reset, typography, utilities)
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.16;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--mint-300);
+  color: var(--forest-950);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(16, 185, 129, 0.55);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* App shell */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+}
+
+/* Layout helpers */
+.container {
+  width: min(100% - 3rem, var(--container));
+  margin-inline: auto;
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: min(100% - 2rem, var(--container));
+  }
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--white {
+  background: var(--paper);
+}
+
+.section--tint {
+  background: var(--tint);
+}
+
+/* Anchor targets clear the sticky navbar */
+[id] {
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+/* Eyebrow pill */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  background: var(--mint-100);
+  border: 1px solid var(--mint-200);
+  padding: 0.42em 0.95em;
+  border-radius: 999px;
+}
+
+.eyebrow--dark {
+  color: var(--emerald-300);
+  background: rgba(110, 231, 183, 0.12);
+  border-color: rgba(110, 231, 183, 0.25);
+}
+
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scroll reveal — only active when JS is available */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal--full {
+  height: 100%;
+}
+
+/* 404 page */
+.not-found {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: var(--section-y);
+}
+
+.not-found__inner {
+  max-width: 36rem;
+}
+
+.not-found__code {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.not-found h1 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-top: 0.5rem;
+}
+
+.not-found p {
+  color: var(--muted);
+  margin-top: 0.8rem;
+}
+
+.not-found__actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
